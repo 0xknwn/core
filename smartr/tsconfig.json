@@ -8,13 +8,13 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "strict": true,
-
-
-    "allowJs": true,
-    "checkJs": true,
     "declaration": true,
     "verbatimModuleSyntax": false
   },
+  "types": [
+    "vite/client",
+    "chrome"
+  ],
   "include": ["src"],
   "exclude": ["node_modules"]
 }

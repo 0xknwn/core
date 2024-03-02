@@ -7,7 +7,7 @@ import {
   RpcCallSchema,
   RpcCallsArraySchema,
   StarknetMethodArgumentsSchemas,
-} from "../../types/window";
+} from "../types/window";
 import { DEFAULT_WEBWALLET_URL } from "../constants";
 import { Permission } from "get-starknet-core";
 

@@ -1,8 +1,8 @@
 export {};
 
 import type { StarknetWindowObject } from "get-starknet-core";
-import { getWebWalletStarknetObject } from "./webwallet/starknetWindowObject/getWebWalletStarknetObject";
-import { trpcProxyClient } from "./webwallet/helpers/trpc";
+import { getSmartrStarknetObject } from "./starknetWindowObject/smartrStarknetObject";
+import { trpcProxyClient } from "./helpers/trpc";
 
 declare global {
   interface Window {
@@ -15,10 +15,7 @@ export const init = async () => {
     return window.starknet_smartr;
   }
 
-  const proxyLink = await getWebWalletStarknetObject(
-    "smartr",
-    trpcProxyClient({})
-  );
+  const proxyLink = await getSmartrStarknetObject(trpcProxyClient({}));
 
   window.starknet_smartr = proxyLink;
 

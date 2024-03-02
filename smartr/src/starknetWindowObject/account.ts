@@ -7,7 +7,7 @@ import {
   SignerInterface,
   typedData,
 } from "starknet";
-import type { StarknetMethods } from "../../types/window";
+import type { StarknetMethods } from "../types/window";
 
 import { setPopupOptions, type AppRouter } from "../helpers/trpc";
 import {
