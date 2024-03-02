@@ -1,14 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "baseUrl": ".",
+    "declaration": true,
+    "esModuleInterop": true,
     "lib": ["DOM", "ESNext"],
-    "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "outDir": "dist",
     "resolveJsonModule": true,
-    "baseUrl": ".",
+    "sourceMap": true,
     "strict": true,
-    "declaration": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
     "verbatimModuleSyntax": false
   },
   "types": [

@@ -1,8 +1,16 @@
 {
   "name": "@smartr-network/wallet",
-  "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
+  "module": "./src/index.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/index.umd.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.umd.js",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -24,5 +32,11 @@
   },
   "peerDependencies": {
     "starknet": "^5.24.3"
-  }
+  },
+  "contributors": [
+    {
+      "name": "0xknwn"
+    }
+  ],
+  "license": "MIT"
 }
