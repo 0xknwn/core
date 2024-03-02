@@ -8,10 +8,6 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "strict": true,
-
-
-    "allowJs": true,
-    "checkJs": true,
     "declaration": true,
     "verbatimModuleSyntax": false
   },

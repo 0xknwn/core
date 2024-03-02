@@ -1,7 +1,7 @@
 export const setStarknetLastConnectedWallet = (id: string) => {
-  localStorage.setItem("starknetLastConnectedWallet", id)
-}
+  localStorage.setItem("starknetLastConnectedWallet", id);
+};
 
 export const removeStarknetLastConnectedWallet = () => {
-  localStorage.removeItem("starknetLastConnectedWallet")
-}
+  localStorage.removeItem("starknetLastConnectedWallet");
+};
