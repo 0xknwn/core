@@ -9,16 +9,16 @@ import {
   type ConnectorData,
   type ConnectorIcons,
 } from "./connector";
-import { setPopupOptions, trpcProxyClient } from "./helpers/trpc";
+import { setPopupOptions, trpcProxyClient } from "../helpers/trpc";
 
 import {
   ConnectorNotConnectedError,
   ConnectorNotFoundError,
   UserRejectedRequestError,
 } from "../errors";
-import { DEFAULT_WEBWALLET_ICON, DEFAULT_WEBWALLET_URL } from "./constants";
-import { getWebWalletStarknetObject } from "./starknetWindowObject/getWebWalletStarknetObject";
-import { removeStarknetLastConnectedWallet } from "./helpers/lastConnected";
+import { DEFAULT_WEBWALLET_ICON, DEFAULT_WEBWALLET_URL } from "../constants";
+import { getSmartrStarknetObject } from "../starknetWindowObject/smartrStarknetObject";
+import { removeStarknetLastConnectedWallet } from "../helpers/lastConnected";
 
 let _wallet: StarknetWindowObject | null = null;
 
@@ -173,10 +173,7 @@ export class WebWalletConnector extends Connector {
       origin,
       location: "/interstitialLogin",
     });
-    const wallet = await getWebWalletStarknetObject(
-      origin,
-      trpcProxyClient({})
-    );
+    const wallet = await getSmartrStarknetObject(trpcProxyClient({}));
 
     _wallet = wallet ?? null;
     this._wallet = _wallet;

@@ -11,14 +11,13 @@ import { type AppRouter } from "../helpers/trpc";
 
 export const userEventHandlers: WalletEvents[] = [];
 
-export type Variant = "argentX" | "argentWebWallet";
+export type Variant = "smartr";
 
-export interface GetArgentStarknetWindowObject {
+export interface SmartrStarknetWindowObjectOptions {
   id: Variant;
   icon: string;
   name: string;
   version: string;
-  host: string;
 }
 
 export type LoginStatus = {
@@ -27,15 +26,15 @@ export type LoginStatus = {
   isPreauthorized?: boolean;
 };
 
-export type WebWalletStarknetWindowObject = StarknetWindowObject & {
+export type SmartrStarknetWindowObject = StarknetWindowObject & {
   getLoginStatus(): Promise<LoginStatus>;
 };
 
-export const getArgentStarknetWindowObject = (
-  options: GetArgentStarknetWindowObject,
+export const getSmartrStarknetWindowObject = (
+  options: SmartrStarknetWindowObjectOptions,
   proxyLink: CreateTRPCProxyClient<AppRouter>
-): WebWalletStarknetWindowObject => {
-  const wallet: WebWalletStarknetWindowObject = {
+): SmartrStarknetWindowObject => {
+  const wallet: SmartrStarknetWindowObject = {
     ...options,
     getLoginStatus: () => {
       return proxyLink.getLoginStatus.mutate();
