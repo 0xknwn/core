@@ -1,13 +1,11 @@
-import type { CreateTRPCProxyClient } from "@trpc/client";
 import type {
   AccountChangeEventHandler,
   NetworkChangeEventHandler,
   StarknetWindowObject,
   WalletEvents,
 } from "get-starknet-core";
-import type { constants } from "starknet";
-
-import { type AppRouter } from "../helpers/trpc";
+import { constants } from "starknet";
+import { Permission } from "get-starknet-core";
 
 export const userEventHandlers: WalletEvents[] = [];
 
@@ -31,55 +29,55 @@ export type SmartrStarknetWindowObject = StarknetWindowObject & {
 };
 
 export const getSmartrStarknetWindowObject = (
-  options: SmartrStarknetWindowObjectOptions,
-  proxyLink: CreateTRPCProxyClient<AppRouter>
+  options: SmartrStarknetWindowObjectOptions
 ): SmartrStarknetWindowObject => {
   const wallet: SmartrStarknetWindowObject = {
     ...options,
-    getLoginStatus: () => {
-      return proxyLink.getLoginStatus.mutate();
+    getLoginStatus: async () => {
+      return {
+        isLoggedIn: true,
+      };
     },
-    async request(call) {
+    request: async (call) => {
+      console.log("request", call);
       switch (call.type) {
         case "wallet_requestAccounts": {
-          return proxyLink.requestAccounts.mutate(call.params as any);
+          return ["0x1234"];
         }
 
         case "starknet_signTypedData": {
-          return proxyLink.signTypedData.mutate(call.params as any);
+          return ["0x1234"];
         }
 
         case "wallet_getPermissions": {
-          return proxyLink.getPermissions.mutate();
+          return [Permission.Accounts];
         }
 
         case "starknet_addInvokeTransaction": {
-          const hash = await proxyLink.addInvokeTransaction.mutate(
-            (call.params as any).calls
-          );
+          const hash = "0x1234";
 
           return { transaction_hash: hash };
         }
 
         case "wallet_requestChainId": {
-          return (await proxyLink.requestChainId.mutate()) as constants.StarknetChainId;
+          return constants.StarknetChainId.SN_MAIN as constants.StarknetChainId;
         }
 
         case "wallet_addStarknetChain": {
           //TODO: add with implementation
           //const params = call.params as AddStarknetChainParameters
-          return proxyLink.addStarknetChain.mutate(call.params as any);
+          throw Error("not implemented");
         }
         case "wallet_switchStarknetChain": {
           //TODO: add with implementation
           //const params = call.params as SwitchStarknetChainParameter
-          return proxyLink.switchStarknetChain.mutate(call.params as any);
+          throw Error("not implemented");
         }
         case "wallet_watchAsset": {
           //TODO: add with implementation
           //const params = call.params as WatchAssetParameters
           /* return remoteHandle.call("watchAsset", params) */
-          return proxyLink.watchAsset.mutate();
+          throw Error("not implemented");
         }
         default:
           throw new Error("not implemented");
