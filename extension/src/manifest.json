@@ -2,12 +2,18 @@
   "{{chrome}}.manifest_version": 3,
   "{{firefox}}.manifest_version": 2,
   "icons": {
-    "16": "icon/16.png",
-    "32": "icon/32.png",
-    "48": "icon/48.png",
-    "96": "icon/96.png",
-    "128": "icon/128.png"
+    "16": "icon/abacus-16.png",
+    "32": "icon/abacus-32.png",
+    "48": "icon/abacus-48.png",
+    "96": "icon/abacus-96.png",
+    "128": "icon/abacus-128.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["src/content.ts"]
+    }
+  ],
   "{{chrome}}.action": {
     "default_popup": "src/popup.html"
   },
